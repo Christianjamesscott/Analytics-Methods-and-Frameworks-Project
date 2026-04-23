@@ -1,0 +1,2 @@
+"""NovaBank analytics source package."""
+

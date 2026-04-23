@@ -1,0 +1,2 @@
+dataset_name,source_path,rows,raw_columns,modeling_columns,excluded_columns_count,duplicate_rows,missing_cells,target_positive_rate
+bank,C:\Codex Work\Analytics Methods and Frameworks Project\data\raw\uci_bank_marketing\bank\bank-full.csv,45211,17,12,5,0,0,0.116985

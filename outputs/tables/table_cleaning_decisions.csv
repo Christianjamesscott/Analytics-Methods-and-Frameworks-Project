@@ -1,0 +1,9 @@
+decision_type,field,action,reason
+data_quality,missing_values,retain_as_is,The dataset contains 0 missing cells.
+data_quality,duplicate_rows,retain_as_is,The dataset contains 0 duplicate rows.
+model_selection,selection_rule,rank_by_precision_then_recall,"Prefer the model with the highest precision in the top 20%, then break ties with top-20% recall and PR AUC."
+feature_scope,contact,exclude_from_modeling,Current-campaign contact method is a campaign-execution choice rather than a stable pre-contact customer attribute.
+feature_scope,day,exclude_from_modeling,Last contact day in the current campaign is not available when prioritizing customers before outreach.
+feature_scope,month,exclude_from_modeling,"Current-campaign contact month is scheduling context, not a stable customer signal for early prioritization."
+feature_scope,duration,exclude_from_modeling,Last contact duration is observed after contact and is explicit leakage for proactive prioritization.
+feature_scope,campaign,exclude_from_modeling,Current-campaign contact count includes the last contact and is not known at the start of prioritization.

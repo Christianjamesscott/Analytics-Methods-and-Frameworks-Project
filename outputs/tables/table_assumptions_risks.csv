@@ -1,0 +1,8 @@
+category,item,note
+dataset_framing,proxy_target,"The target variable y is treated as a proxy for whether a customer is a strong candidate for proactive outreach, with 'yes' mapped to 1 and 'no' mapped to 0."
+capacity,top20_rule,NovaBank is assumed to have enough outreach capacity to contact the top 20% of ranked customers.
+model_scope,excluded_current_campaign_fields,"The model excludes contact-time variables tied to the current campaign: contact, day, month, duration, campaign."
+model_selection,selection_rule,"Prefer the model with the highest precision in the top 20%, then break ties with top-20% recall and PR AUC."
+risk,proxy_outcome_limitation,"The target reflects term-deposit response, not a literal churn label, so business interpretation should stay within outreach prioritization."
+risk,single_split_validation,This first pass uses one stratified train/test split rather than repeated resampling.
+decision,selected_model,The current recommended model is gradient_boosting based on top-20% decision usefulness on the held-out test set.

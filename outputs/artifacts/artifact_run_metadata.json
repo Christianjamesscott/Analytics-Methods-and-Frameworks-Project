@@ -1,0 +1,44 @@
+{
+  "run_timestamp": "2026-04-23T13:17:30",
+  "dataset_name": "bank",
+  "dataset_path": "C:\\Codex Work\\Analytics Methods and Frameworks Project\\data\\raw\\uci_bank_marketing\\bank\\bank-full.csv",
+  "random_state": 42,
+  "test_size": 0.2,
+  "top_k_share": 0.2,
+  "excluded_columns": [
+    "contact",
+    "day",
+    "month",
+    "duration",
+    "campaign"
+  ],
+  "selected_model": "gradient_boosting",
+  "model_comparison": [
+    {
+      "model": "gradient_boosting",
+      "pr_auc": 0.39177078297228035,
+      "roc_auc": 0.7410947748199899,
+      "target_share": 0.2,
+      "targeted_customers": 1809,
+      "positives_captured": 542,
+      "precision_at_share": 0.2996130458817026,
+      "recall_at_share": 0.5122873345935728,
+      "false_positives": 1267,
+      "false_negatives": 516,
+      "threshold_score": 0.12762298178218293
+    },
+    {
+      "model": "logistic_regression",
+      "pr_auc": 0.34685308457606373,
+      "roc_auc": 0.7201288924294489,
+      "target_share": 0.2,
+      "targeted_customers": 1809,
+      "positives_captured": 514,
+      "precision_at_share": 0.2841348811498065,
+      "recall_at_share": 0.48582230623818523,
+      "false_positives": 1295,
+      "false_negatives": 544,
+      "threshold_score": 0.14252136793649026
+    }
+  ]
+}

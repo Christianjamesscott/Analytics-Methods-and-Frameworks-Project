@@ -1,0 +1,7 @@
+decision_item,value
+recommended_model,gradient_boosting
+targeting_rule,Rank customers by model score and target the top 20%.
+targeted_customers,1809
+precision_at_target_share,0.2996
+recall_at_target_share,0.5123
+positives_captured,542

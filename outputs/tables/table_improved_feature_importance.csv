@@ -1,0 +1,21 @@
+feature,feature_label,importance
+categorical__poutcome_success,poutcome = success,0.5240987798664241
+numeric__age,age,0.1444599181906321
+numeric__pdays,pdays,0.10829327493059919
+numeric__balance,balance,0.0524059471725941
+categorical__housing_no,housing = no,0.0521158640131763
+categorical__housing_yes,housing = yes,0.03599156186375591
+numeric__previous,previous,0.01467502170193145
+categorical__marital_married,marital = married,0.00997534195207741
+categorical__marital_single,marital = single,0.009973208658042512
+categorical__loan_no,loan = no,0.008500391357467827
+categorical__education_tertiary,education = tertiary,0.008295840880263647
+categorical__poutcome_other,poutcome = other,0.005415151174745593
+categorical__job_student,job = student,0.003720276682252602
+categorical__job_blue-collar,job = blue-collar,0.003039095393672949
+categorical__loan_yes,loan = yes,0.0030112132915003833
+categorical__education_primary,education = primary,0.002599231195558594
+categorical__marital_divorced,marital = divorced,0.0025299245998832
+categorical__job_unknown,job = unknown,0.0017660930297108753
+categorical__poutcome_failure,poutcome = failure,0.001436113493806778
+categorical__job_technician,job = technician,0.0012101006074506265

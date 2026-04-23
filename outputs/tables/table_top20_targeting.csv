@@ -1,0 +1,2 @@
+model,targeting_rule,target_share,targeted_customers,positives_captured,precision_at_share,recall_at_share,threshold_score
+gradient_boosting,Select the top 20% highest-scoring customers.,0.2,1809,542,0.2996130458817026,0.5122873345935728,0.12762298178218293

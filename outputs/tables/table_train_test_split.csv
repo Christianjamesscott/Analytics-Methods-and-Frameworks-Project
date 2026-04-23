@@ -1,0 +1,2 @@
+train_rows,test_rows,train_positive_rate,test_positive_rate,train_features,split_strategy
+36168,9043,0.116982,0.116997,11,stratified_random_split

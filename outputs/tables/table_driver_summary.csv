@@ -1,0 +1,7 @@
+model,insight_rank,insight
+logistic_regression,1,Higher values or presence of 'poutcome = success' are associated with a higher outreach priority in the baseline model.
+logistic_regression,2,Higher values or presence of 'job = retired' are associated with a higher outreach priority in the baseline model.
+logistic_regression,3,'poutcome = unknown' is associated with a lower predicted outreach priority in the baseline model.
+gradient_boosting,1,'poutcome = success' is among the most influential inputs in the improved model's ranking logic.
+gradient_boosting,2,'age' is among the most influential inputs in the improved model's ranking logic.
+gradient_boosting,3,'pdays' is among the most influential inputs in the improved model's ranking logic.

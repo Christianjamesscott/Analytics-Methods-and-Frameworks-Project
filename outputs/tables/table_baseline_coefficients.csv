@@ -1,0 +1,21 @@
+feature,feature_label,coefficient,odds_ratio
+categorical__poutcome_success,poutcome = success,1.5745868843733184,4.82874637542072
+categorical__poutcome_unknown,poutcome = unknown,-0.9672314239387841,0.3801340125078825
+categorical__poutcome_failure,poutcome = failure,-0.6930059677741139,0.500070611378413
+categorical__housing_yes,housing = yes,-0.5992523061968946,0.5492221325971279
+categorical__job_retired,job = retired,0.5672718347204221,1.7634495011836937
+categorical__job_student,job = student,0.47699929232504856,1.6112323038250949
+categorical__loan_yes,loan = yes,-0.4670115782763293,0.6268728322634834
+categorical__default_yes,default = yes,-0.43523682717362233,0.6471113953665144
+categorical__poutcome_other,poutcome = other,-0.4183827885663683,0.6581102631190531
+categorical__job_housemaid,job = housemaid,-0.38470066969875566,0.6806543461852685
+categorical__marital_married,marital = married,-0.36237640869743365,0.6960203304223214
+categorical__education_primary,education = primary,-0.3046117653696009,0.7374096067715091
+categorical__job_entrepreneur,job = entrepreneur,-0.2914771666327951,0.7471590735656887
+categorical__job_blue-collar,job = blue-collar,-0.22415675388413872,0.7991898484371867
+categorical__job_self-employed,job = self-employed,-0.21065632570488702,0.8100524132404172
+categorical__job_unknown,job = unknown,-0.18160989156501745,0.8339265987689328
+categorical__job_services,job = services,-0.16414334558539745,0.8486203671777695
+categorical__job_technician,job = technician,-0.15402522307565555,0.8572503982471116
+categorical__education_unknown,education = unknown,-0.14911672802690903,0.8614685515055278
+categorical__marital_divorced,marital = divorced,-0.1476678886061398,0.8627175857092071

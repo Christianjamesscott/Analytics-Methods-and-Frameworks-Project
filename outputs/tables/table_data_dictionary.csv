@@ -1,0 +1,18 @@
+column,dtype,non_null_count,missing_count,missing_pct,unique_count,sample_values
+age,int64,45211,0,0.0,77,58 | 44 | 33
+job,str,45211,0,0.0,12,management | technician | entrepreneur
+marital,str,45211,0,0.0,3,married | single | divorced
+education,str,45211,0,0.0,4,tertiary | secondary | unknown
+default,str,45211,0,0.0,2,no | yes
+balance,int64,45211,0,0.0,7168,2143 | 29 | 2
+housing,str,45211,0,0.0,2,yes | no
+loan,str,45211,0,0.0,2,no | yes
+contact,str,45211,0,0.0,3,unknown | cellular | telephone
+day,int64,45211,0,0.0,31,5 | 6 | 7
+month,str,45211,0,0.0,12,may | jun | jul
+duration,int64,45211,0,0.0,1573,261 | 151 | 76
+campaign,int64,45211,0,0.0,48,1 | 2 | 3
+pdays,int64,45211,0,0.0,559,-1 | 151 | 166
+previous,int64,45211,0,0.0,41,0 | 3 | 1
+poutcome,str,45211,0,0.0,4,unknown | failure | other
+y,str,45211,0,0.0,2,no | yes

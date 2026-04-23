@@ -1,0 +1,2 @@
+target_column,positive_class,business_definition
+y,yes,"The target variable y is treated as a proxy for whether a customer is a strong candidate for proactive outreach, with 'yes' mapped to 1 and 'no' mapped to 0."

@@ -1,0 +1,2 @@
+model,pr_auc,roc_auc,target_share,targeted_customers,positives_captured,precision_at_share,recall_at_share,true_positives,false_positives,false_negatives,true_negatives,threshold_score
+gradient_boosting,0.39177078297228035,0.7410947748199899,0.2,1809,542,0.2996130458817026,0.5122873345935728,542,1267,516,6718,0.12762298178218293

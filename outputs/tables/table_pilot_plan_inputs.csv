@@ -1,0 +1,8 @@
+pilot_item,value
+objective,Test whether model-ranked outreach improves conversion efficiency versus untargeted outreach.
+recommended_model,gradient_boosting
+target_population,Top 20% highest-scoring customers in the scoring population.
+pilot_batch_size,1809
+primary_kpi,Conversion rate within the targeted group.
+secondary_kpi,Captured positives and outreach cost per conversion.
+monitoring_note,Track false-positive burden and missed-opportunity risk if capacity is tightened below 20%.

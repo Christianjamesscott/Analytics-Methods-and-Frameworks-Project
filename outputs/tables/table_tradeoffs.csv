@@ -1,0 +1,5 @@
+model,outcome_type,count,business_interpretation
+gradient_boosting,true_positive,542,Strong-priority customers selected for proactive outreach.
+gradient_boosting,false_positive,1267,Outreach effort spent on weaker-priority customers.
+gradient_boosting,false_negative,516,Missed opportunity to prioritize a stronger candidate for outreach.
+gradient_boosting,true_negative,6718,Lower-priority customers left outside the top-20% queue.
