@@ -1,48 +1,45 @@
 # NovaBank Analytics Project
 
-This repo is for the NovaBank analytics lane only.
+This repo contains the analytics work for the NovaBank project. The analysis builds a proactive outreach prioritization framework using the provided bank marketing dataset as a proxy decision dataset. The current recommendation is to use gradient boosting and target the top 20% highest-scoring customers.
 
-## Start here
+## Start Here / For Graders
 
-Read the root operating documents in this order:
+- [Final reproducible notebook](notebooks/99_final_reproducible_notebook.ipynb)
+- [Model comparison table](outputs/tables/table_model_comparison.csv)
+- [Decision summary table](outputs/tables/table_decision_summary.csv)
+- [Trade-off table](outputs/tables/table_tradeoffs.csv)
+- [Scenario analysis table](outputs/tables/table_scenario_analysis.csv)
+- [Assumptions and risks table](outputs/tables/table_assumptions_and_risks.csv)
+- [Proxy framing table](outputs/tables/table_proxy_target_framing.csv)
+- [Pilot plan inputs table](outputs/tables/table_pilot_plan_inputs.csv)
+- [AI usage log](outputs/tables/table_ai_usage_log.csv)
 
-1. `AGENTS.md`
-2. `CODEX_STARTUP_NOVABANK.md`
-3. `OUTCOMES.md`
-4. `SLIDES_AND_SUPPORTING_ARTIFACTS.md`
+## Project At A Glance
 
-These documents define the scope, outcome standard, and downstream artifact expectations. The repo is intentionally not for memo writing, slide writing, or presentation design.
+- Dataset used: UCI bank marketing dataset, used as a proxy prioritization framework for NovaBank outreach decisions
+- Baseline model: logistic regression
+- Improved model: gradient boosting
+- Targeting rule: rank customers by score and target the top 20%
+- Main recommendation: use the gradient boosting model to prioritize the top 20% highest-scoring customers for proactive outreach
+- Major limitation: the dataset is not literal NovaBank churn or retention history, so this should be read as a prototype decision framework
 
-## Active analytics scope
+## Key Outputs
 
-- Profile and prepare the bank marketing dataset
-- Build a logistic regression baseline
-- Build one improved non-linear model
-- Evaluate the top-20% outreach targeting rule
-- Produce reproducible tables, figures, saved artifacts, and a final notebook
+- Notebook: [99_final_reproducible_notebook.ipynb](notebooks/99_final_reproducible_notebook.ipynb)
+- Tables: [table_model_comparison.csv](outputs/tables/table_model_comparison.csv), [table_decision_summary.csv](outputs/tables/table_decision_summary.csv), [table_tradeoffs.csv](outputs/tables/table_tradeoffs.csv), [table_scenario_analysis.csv](outputs/tables/table_scenario_analysis.csv), [table_assumptions_and_risks.csv](outputs/tables/table_assumptions_and_risks.csv), [table_proxy_target_framing.csv](outputs/tables/table_proxy_target_framing.csv)
+- Figures: [fig_model_comparison.png](outputs/figures/fig_model_comparison.png), [fig_feature_importance.png](outputs/figures/fig_feature_importance.png), [fig_scenario_comparison.png](outputs/figures/fig_scenario_comparison.png)
 
-## Current dataset state
+## Current Verified First Pass
 
-The raw dataset has been extracted into:
+On the current verified run using `bank-full.csv` and the leakage-aware feature set:
 
-- `data/raw/uci_bank_marketing/bank/bank-full.csv`
-- `data/raw/uci_bank_marketing/bank-additional/bank-additional/bank-additional-full.csv`
+- `gradient_boosting` ranked above `logistic_regression`
+- top-20% precision was `0.2996` for `gradient_boosting`
+- top-20% recall was `0.5123` for `gradient_boosting`
 
-The first pass defaults to the `bank-full.csv` variant because it is the simpler starting point. That choice is controlled in [src/config.py](src/config.py).
+These values come from [table_model_comparison.csv](outputs/tables/table_model_comparison.csv).
 
-## Modeling guardrail
-
-For the proactive-outreach framing, the current first-pass model excludes variables tied to the last contact in the current campaign:
-
-- `contact`
-- `day`
-- `month`
-- `duration`
-- `campaign`
-
-This is deliberate leakage control. The repo is framed around pre-contact prioritization, not post-contact outcome explanation.
-
-## Validated run path
+## Reproducibility
 
 From the project root:
 
@@ -59,52 +56,13 @@ Optional notebook tooling:
 pip install -r requirements-notebook.txt
 ```
 
-The main entrypoint is [scripts/run_first_pass.py](scripts/run_first_pass.py). It builds the full first-pass output set and regenerates the final notebook.
+The main entrypoint is [scripts/run_first_pass.py](scripts/run_first_pass.py). It regenerates the first-pass outputs and final notebook.
 
-## Current verified first pass
+## Internal Project Docs
 
-On the current verified run using `bank-full.csv` and the leakage-aware feature set:
+These documents remain in the repo for project operating context:
 
-- `gradient_boosting` ranked above `logistic_regression`
-- top-20% precision was `0.2996` for `gradient_boosting`
-- top-20% recall was `0.5123` for `gradient_boosting`
-
-These values come from [table_model_comparison.csv](outputs/tables/table_model_comparison.csv).
-
-## Repo map
-
-```text
-data/
-  raw/        source files used for analysis
-  processed/  regenerated modeling-frame files
-docs/
-notebooks/    final reproducible notebook output
-outputs/
-  tables/     stable csv deliverables
-  figures/    reusable png visuals
-  artifacts/  regenerated models, metadata, and scored test outputs
-scripts/      runnable entrypoints
-src/          reusable analytics modules
-```
-
-## Useful files
-
-- [src/config.py](src/config.py): project constants, dataset paths, targeting share, and excluded columns
-- [src/reporting/pipeline.py](src/reporting/pipeline.py): end-to-end first-pass orchestration
-- [notebooks/99_final_reproducible_notebook.ipynb](notebooks/99_final_reproducible_notebook.ipynb): generated notebook that reuses the same pipeline
-- [outputs/tables](outputs/tables): current reusable analytics tables
-- [outputs/figures](outputs/figures): current reusable figures
-
-## What exists now
-
-- Raw data is unpacked
-- Project folders exist
-- Core modules exist for profiling, leakage-aware preprocessing, modeling, evaluation, explainability, defensibility checks, scenarios, and reporting
-- Stable first-pass outputs have been generated
-- A final reproducible notebook file exists
-
-## What does not exist yet
-
-- Finished business write-up
-- Final memo/slide writing
-- Any second-pass model tuning beyond the current passing-oriented workflow
+- [AGENTS.md](AGENTS.md)
+- [CODEX_STARTUP_NOVABANK.md](CODEX_STARTUP_NOVABANK.md)
+- [OUTCOMES.md](OUTCOMES.md)
+- [SLIDES_AND_SUPPORTING_ARTIFACTS.md](SLIDES_AND_SUPPORTING_ARTIFACTS.md)
