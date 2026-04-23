@@ -1,6 +1,7 @@
 # Outputs
 
 Generated tables, figures, and artifacts are written here by the analytics pipeline.
+The current contents are intentionally committed so another reviewer or agent can inspect the latest verified first-pass outputs without rerunning the pipeline first.
 
 ## Naming convention
 
