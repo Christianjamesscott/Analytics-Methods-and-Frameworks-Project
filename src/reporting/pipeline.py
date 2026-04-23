@@ -83,46 +83,70 @@ def _save_model_bundle(bundle: ModelBundle, name: str) -> Path:
     return path
 
 
-def build_assumptions_risks_table(selected_model_name: str) -> pd.DataFrame:
+def build_assumptions_and_risks_table() -> pd.DataFrame:
     rows = [
         {
-            "category": "dataset_framing",
+            "category": "framing",
             "item": "proxy_target",
-            "note": TARGET_DEFINITION_NOTE,
+            "value": "Treat y=yes as a proxy for stronger proactive-outreach candidates, not literal churn.",
+            "implication": "Use the ranking as an outreach-prioritization prototype rather than a direct retention model.",
         },
         {
             "category": "capacity",
-            "item": "top20_rule",
-            "note": "NovaBank is assumed to have enough outreach capacity to contact the top 20% of ranked customers.",
+            "item": "targeting_share",
+            "value": "Top 20%",
+            "implication": "The recommendation depends on NovaBank being able to act on roughly 20% of the scoring population.",
         },
         {
-            "category": "model_scope",
+            "category": "error_tradeoff",
+            "item": "false_negative_priority",
+            "value": "False negatives are treated as somewhat worse than false positives.",
+            "implication": "Missing a strong candidate is considered somewhat more costly than contacting a weaker-priority customer.",
+        },
+        {
+            "category": "leakage_control",
             "item": "excluded_current_campaign_fields",
-            "note": (
-                "The model excludes contact-time variables tied to the current campaign: "
-                + ", ".join(PROACTIVE_EXCLUDED_COLUMNS)
-                + "."
-            ),
+            "value": ", ".join(PROACTIVE_EXCLUDED_COLUMNS),
+            "implication": "The recommendation is intentionally based on pre-contact features only.",
         },
         {
-            "category": "model_selection",
-            "item": "selection_rule",
-            "note": MODEL_SELECTION_RULE,
+            "category": "fairness_defensibility",
+            "item": "light_segment_check_only",
+            "value": "Simple sanity check rather than full fairness analysis.",
+            "implication": "Defensibility review is limited and should not be overstated.",
         },
         {
-            "category": "risk",
-            "item": "proxy_outcome_limitation",
-            "note": "The target reflects term-deposit response, not a literal churn label, so business interpretation should stay within outreach prioritization.",
+            "category": "external_validity",
+            "item": "proxy_dataset_limit",
+            "value": "UCI bank marketing data rather than true NovaBank retention history.",
+            "implication": "Treat the result as a prototype decision framework, not a production-ready retention system.",
+        },
+    ]
+    return pd.DataFrame(rows)
+
+
+def build_proxy_target_framing_table(dataset_name: str) -> pd.DataFrame:
+    rows = [
+        {"framing_item": "dataset_name", "value": dataset_name},
+        {
+            "framing_item": "original_target_definition",
+            "value": "Whether the customer subscribed to a term deposit.",
         },
         {
-            "category": "risk",
-            "item": "single_split_validation",
-            "note": "This first pass uses one stratified train/test split rather than repeated resampling.",
+            "framing_item": "project_proxy_interpretation",
+            "value": "Whether the customer is a stronger candidate for proactive outreach prioritization.",
         },
         {
-            "category": "decision",
-            "item": "selected_model",
-            "note": f"The current recommended model is {selected_model_name} based on top-20% decision usefulness on the held-out test set.",
+            "framing_item": "why_this_proxy_is_used",
+            "value": "It supports a simple, defensible prioritization project using the provided assignment dataset.",
+        },
+        {
+            "framing_item": "major_limitations",
+            "value": "Not literal churn or retention behavior; use as a decision-framework prototype.",
+        },
+        {
+            "framing_item": "decision_use_case",
+            "value": "Rank customers for top-20% outreach prioritization.",
         },
     ]
     return pd.DataFrame(rows)
@@ -228,6 +252,7 @@ def run_first_pass_analysis(dataset_name: str = DEFAULT_DATASET_NAME) -> dict[st
     target_balance = build_target_balance_table(raw_frame)
     data_dictionary = build_data_dictionary(raw_frame)
     target_definition = build_target_definition_table()
+    proxy_target_framing = build_proxy_target_framing_table(dataset_name=dataset_name)
     cleaning_decisions = build_cleaning_decisions_table(raw_frame)
 
     x_train, x_test, y_train, y_test = create_train_test_split(modeling_frame)
@@ -312,7 +337,7 @@ def run_first_pass_analysis(dataset_name: str = DEFAULT_DATASET_NAME) -> dict[st
         scores=selected_scores,
         capacities=SCENARIO_CAPACITIES,
     )
-    assumptions_risks = build_assumptions_risks_table(selected_model_name=selected_model_name)
+    assumptions_and_risks = build_assumptions_and_risks_table()
     pilot_plan_inputs = build_pilot_plan_inputs_table(
         selected_model_name=selected_model_name,
         targeting_summary=targeting_summary,
@@ -325,6 +350,7 @@ def run_first_pass_analysis(dataset_name: str = DEFAULT_DATASET_NAME) -> dict[st
         "target_balance": _save_table("table_target_balance", target_balance),
         "data_dictionary": _save_table("table_data_dictionary", data_dictionary),
         "target_definition": _save_table("table_target_definition", target_definition),
+        "proxy_target_framing": _save_table("table_proxy_target_framing", proxy_target_framing),
         "split_summary": _save_table("table_train_test_split", split_summary),
         "cleaning_decisions": _save_table("table_cleaning_decisions", cleaning_decisions),
         "baseline_results": _save_table("table_baseline_results", baseline_results),
@@ -338,7 +364,7 @@ def run_first_pass_analysis(dataset_name: str = DEFAULT_DATASET_NAME) -> dict[st
         "driver_summary": _save_table("table_driver_summary", driver_summary),
         "segment_sanity": _save_table("table_segment_sanity_check", segment_sanity),
         "scenario_analysis": _save_table("table_scenario_analysis", scenario_analysis),
-        "assumptions_risks": _save_table("table_assumptions_risks", assumptions_risks),
+        "assumptions_and_risks": _save_table("table_assumptions_and_risks", assumptions_and_risks),
         "pilot_plan_inputs": _save_table("table_pilot_plan_inputs", pilot_plan_inputs),
         "ai_usage_log": _save_table("table_ai_usage_log", ai_usage_log),
         "selected_customers": _save_table("table_top20_selected_customers", selected_customers),
@@ -385,6 +411,7 @@ def run_first_pass_analysis(dataset_name: str = DEFAULT_DATASET_NAME) -> dict[st
         "target_balance": target_balance,
         "data_dictionary": data_dictionary,
         "target_definition": target_definition,
+        "proxy_target_framing": proxy_target_framing,
         "split_summary": split_summary,
         "cleaning_decisions": cleaning_decisions,
         "baseline_results": baseline_results,
@@ -398,7 +425,7 @@ def run_first_pass_analysis(dataset_name: str = DEFAULT_DATASET_NAME) -> dict[st
         "driver_summary": driver_summary,
         "segment_sanity": segment_sanity,
         "scenario_analysis": scenario_analysis,
-        "assumptions_risks": assumptions_risks,
+        "assumptions_and_risks": assumptions_and_risks,
         "pilot_plan_inputs": pilot_plan_inputs,
         "ai_usage_log": ai_usage_log,
         "selected_customers": selected_customers,
@@ -412,4 +439,3 @@ def run_first_pass_analysis(dataset_name: str = DEFAULT_DATASET_NAME) -> dict[st
         },
         "selected_model_name": selected_model_name,
     }
-

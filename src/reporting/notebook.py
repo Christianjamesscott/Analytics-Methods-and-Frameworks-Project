@@ -62,6 +62,27 @@ def build_final_notebook(dataset_name: str = DEFAULT_DATASET_NAME) -> Path:
             ],
         },
         {
+            "cell_type": "markdown",
+            "metadata": {},
+            "source": [
+                "## Proxy Framing And Assumptions\n",
+                "\n",
+                "These tables make the project framing explicit for reviewers before the decision outputs.\n",
+            ],
+        },
+        {
+            "cell_type": "code",
+            "execution_count": None,
+            "metadata": {},
+            "outputs": [],
+            "source": [
+                "from IPython.display import display\n",
+                "\n",
+                "display(results['proxy_target_framing'])\n",
+                "display(results['assumptions_and_risks'])\n",
+            ],
+        },
+        {
             "cell_type": "code",
             "execution_count": None,
             "metadata": {},
@@ -135,4 +156,3 @@ def build_final_notebook(dataset_name: str = DEFAULT_DATASET_NAME) -> Path:
 
     notebook_path.write_text(json.dumps(notebook, indent=1), encoding="utf-8")
     return notebook_path
-

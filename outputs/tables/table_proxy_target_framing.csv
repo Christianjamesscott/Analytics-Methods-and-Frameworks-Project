@@ -1,0 +1,7 @@
+framing_item,value
+dataset_name,bank
+original_target_definition,Whether the customer subscribed to a term deposit.
+project_proxy_interpretation,Whether the customer is a stronger candidate for proactive outreach prioritization.
+why_this_proxy_is_used,"It supports a simple, defensible prioritization project using the provided assignment dataset."
+major_limitations,Not literal churn or retention behavior; use as a decision-framework prototype.
+decision_use_case,Rank customers for top-20% outreach prioritization.

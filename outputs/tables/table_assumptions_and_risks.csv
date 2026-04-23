@@ -1,0 +1,7 @@
+category,item,value,implication
+framing,proxy_target,"Treat y=yes as a proxy for stronger proactive-outreach candidates, not literal churn.",Use the ranking as an outreach-prioritization prototype rather than a direct retention model.
+capacity,targeting_share,Top 20%,The recommendation depends on NovaBank being able to act on roughly 20% of the scoring population.
+error_tradeoff,false_negative_priority,False negatives are treated as somewhat worse than false positives.,Missing a strong candidate is considered somewhat more costly than contacting a weaker-priority customer.
+leakage_control,excluded_current_campaign_fields,"contact, day, month, duration, campaign",The recommendation is intentionally based on pre-contact features only.
+fairness_defensibility,light_segment_check_only,Simple sanity check rather than full fairness analysis.,Defensibility review is limited and should not be overstated.
+external_validity,proxy_dataset_limit,UCI bank marketing data rather than true NovaBank retention history.,"Treat the result as a prototype decision framework, not a production-ready retention system."
